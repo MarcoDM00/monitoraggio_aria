@@ -1,0 +1,19 @@
+<body>
+  <img src="../assets/logo.png">
+
+  <h1>Report Qualità dell'Aria 2022</h1>
+
+  <hr>
+
+  <p><b>Data:</b> {{records[indice].data}}</p>
+  <p><b>Descrizione:</b> {{records[indice].descrizione}}</p>
+  <p><b>Previsione:</b> {{records[indice].previsione}}</p>
+  <p><b>Tendenza:</b> {{records[indice].tendenza}}</p>
+
+
+  <div>
+    <button (click)="change(0)"><</button>
+    <p>{{indice + 1}}</p>
+    <button (click)="change(1)">></button>
+  </div>
+</body>
