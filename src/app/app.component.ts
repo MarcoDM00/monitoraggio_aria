@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { Record } from './Record';
@@ -8,7 +8,7 @@ import { Record } from './Record';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   sub:Subscription;
   url:string = "https://dati.comune.milano.it/datastore/dump/eda4e6bd-c037-4453-9e4d-4429e41659c1?format=json";
   records:Record[] = [];
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     this.sub = this.http.get<any>(this.url).subscribe(
       res => {
         this.records = [];
-        [...res['records']].forEach(r => {
+        res['records'].forEach(r => {
           let data = new Date(r[1]);
           let str = data.getDate() + "/";
           str += (data.getMonth() + 1 < 10) ? "0" + (data.getMonth() + 1) : data.getMonth() + 1;
@@ -40,5 +40,9 @@ export class AppComponent implements OnInit {
       this.indice += 1;
       if (this.indice == this.records.length) this.indice = 0;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
