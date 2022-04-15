@@ -9,11 +9,10 @@
   <p><b>Descrizione:</b> {{records[indice].descrizione}}</p>
   <p><b>Previsione:</b> {{records[indice].previsione}}</p>
   <p><b>Tendenza:</b> {{records[indice].tendenza}}</p>
-
-
-  <div>
-    <button (click)="change(0)"><</button>
-    <p>{{indice + 1}}</p>
-    <button (click)="change(1)">></button>
-  </div>
 </body>
+
+<div style="text-align: center;">
+  <button (click)="change(0)"><</button>
+  <p>{{indice + 1}}</p>
+  <button (click)="change(1)">></button>
+</div>
