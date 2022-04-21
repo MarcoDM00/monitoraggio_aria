@@ -27,18 +27,19 @@ export class AppComponent implements OnInit, OnDestroy {
           str += (data.getMonth() + 1 < 10) ? "0" + (data.getMonth() + 1) : data.getMonth() + 1;
           str += "/" + data.getFullYear();
           this.records.push({data: str, descrizione: r[2], previsione: r[3], tendenza: r[4]});
-        });;
+        });
+        this.indice = this.records.length - 1;
       }
     );
   }
 
   change(type:number) {
     if (type == 0) {
-      this.indice -= 1;
-      if (this.indice == -1) this.indice = this.records.length - 1;
-    } else {
       this.indice += 1;
       if (this.indice == this.records.length) this.indice = 0;
+    } else {
+      this.indice -= 1;
+      if (this.indice == -1) this.indice = this.records.length - 1;
     }
   }
 
